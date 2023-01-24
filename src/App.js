@@ -5,6 +5,7 @@ import Product from "./Components/Product/Product";
 import { commerce } from "./Components/lib/commerce";
 import { useEffect, useState } from "react";
 
+
 function App() {
   let [products, setProducts] = useState([]);
   let [cart, setCart] = useState({});
