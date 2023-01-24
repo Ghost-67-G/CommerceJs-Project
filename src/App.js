@@ -4,11 +4,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Product from "./Components/Product/Product";
 import { commerce } from "./Components/lib/commerce";
 import { useEffect, useState } from "react";
-
+import Cart from "./Components/Cart/Cart";
 
 function App() {
   let [products, setProducts] = useState([]);
-  let [cart, setCart] = useState({});
+  let [cart, setCart] = useState({line_items:[]});
 
   const fetchProducts = async () => {
     let { data } = await commerce.products.list();
@@ -19,7 +19,7 @@ function App() {
   };
 
   const handleAddToCart = async (productId, quantity) => {
-    let item = await commerce.cart.add(productId, quantity)
+    let item = await commerce.cart.add(productId, quantity);
     setCart(item);
   };
 
@@ -32,7 +32,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <NavBar items={cart.total_items?cart.total_items:0}/>
+        <NavBar items={cart.total_items ? cart.total_items : 0} />
         <Routes>
           <Route
             path="/"
@@ -40,6 +40,7 @@ function App() {
               <Product onAddToCart={handleAddToCart} products={products} />
             }
           />
+          <Route path="/cart" element={<Cart cart={cart} />} />
         </Routes>
       </BrowserRouter>
     </div>

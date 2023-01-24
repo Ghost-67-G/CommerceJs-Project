@@ -13,3 +13,6 @@
 #root{
   overflow-x: hidden;
 }
+.width{
+  width: 50px;
+}
