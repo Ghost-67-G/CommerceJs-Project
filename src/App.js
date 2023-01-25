@@ -8,7 +8,7 @@ import Cart from "./Components/Cart/Cart";
 
 function App() {
   let [products, setProducts] = useState([]);
-  let [cart, setCart] = useState({line_items:[]});
+  let [cart, setCart] = useState({line_items:[],subtotal:{formatted_with_symbol:'0.00'}});
 
   const fetchProducts = async () => {
     let { data } = await commerce.products.list();
@@ -22,13 +22,20 @@ function App() {
     let item = await commerce.cart.add(productId, quantity);
     setCart(item);
   };
-
+  const emptyCart=async()=>{
+    setCart(await commerce.cart.empty())
+  }
+  const RemoveCart=async(lineItemId)=>{
+    setCart(await commerce.cart.remove(lineItemId))
+  }
+  const quantityUpdate= async(lineItemId, newQuantity)=>{
+    setCart(await commerce.cart.update(lineItemId, { quantity: newQuantity }))
+  }
   useEffect(() => {
     fetchProducts();
     fetchCart();
   }, []);
-  console.log(products);
-  console.log(cart);
+  console.log(cart)
   return (
     <div>
       <BrowserRouter>
@@ -40,7 +47,7 @@ function App() {
               <Product onAddToCart={handleAddToCart} products={products} />
             }
           />
-          <Route path="/cart" element={<Cart cart={cart} />} />
+          <Route path="/cart" element={<Cart cart={cart} emptyCart={emptyCart} RemoveCart={RemoveCart} quantityUpdate={quantityUpdate}/>} />
         </Routes>
       </BrowserRouter>
     </div>
