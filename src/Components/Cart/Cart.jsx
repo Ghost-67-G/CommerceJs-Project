@@ -14,6 +14,7 @@ const Cart = ({ cart, emptyCart, RemoveCart,quantityUpdate }) => {
       >
         Empty Cart
       </button>
+      {cart.line_items.length?
       <div className={`w-75 border m-auto`}>
         <table className="table table-hover">
           <thead>
@@ -82,7 +83,7 @@ const Cart = ({ cart, emptyCart, RemoveCart,quantityUpdate }) => {
            <h3 className={`px-5`}>{cart.subtotal.formatted_with_symbol.split('.')[0]}</h3>
         </div>
         <button className={`w-100 btn btn-primary`}>Check Out</button>
-      </div>
+      </div>:<div><h1 className={`text-center fs-1`}>Your Shopping Cart is Empty</h1></div>}
     </div>
   );
 };
