@@ -4,10 +4,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Product from "./Components/Product/Product";
 import { commerce } from "./Components/lib/commerce";
 import { useEffect, useState } from "react";
+import Cart from "./Components/Cart/Cart";
 
 function App() {
   let [products, setProducts] = useState([]);
-  let [cart, setCart] = useState({});
+  let [cart, setCart] = useState({line_items:[]});
 
   const fetchProducts = async () => {
     let { data } = await commerce.products.list();
@@ -26,8 +27,6 @@ function App() {
     fetchProducts();
     fetchCart();
   }, []);
-  console.log(products);
-  console.log(cart);
   return (
     <div>
       <BrowserRouter>
