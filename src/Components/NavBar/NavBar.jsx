@@ -11,7 +11,7 @@ const NavBar = ({items}) => {
     >
       <div className={`align-items-center d-flex`}>
         <img className={`${style.icon}`} src="./Asserts/logo.png" alt="" />
-        <h3 onClick={()=>{ navigate('/') }} className={`d-inline-block ms-3 text-white`}>SA Machineries</h3>
+        <h3 onClick={()=>{ navigate('/') }} role='button' className={`d-inline-block ms-3 text-white`}>SA Machineries</h3>
       </div>
       <div className={`d-flex`}>
         <ul className={`nav justify-content-center gap-4`}>
