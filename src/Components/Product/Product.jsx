@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
+import style from './Product.module.css'
 
 const Product = ({ products, onAddToCart }) => {
   return (
@@ -34,7 +35,7 @@ const Product = ({ products, onAddToCart }) => {
           return (
             <div className="col-md-4 col-sm-5 col-lg-3 border">
               <div>
-                <img className="w-100 h-100 p-3" src={item.image.url} alt="" />
+                <img className={`${style.img} mw-100 p-3`} src={item.image.url} alt="" />
               </div>
               <hr />
               <div className={`text-start px-2 py-2`}>
