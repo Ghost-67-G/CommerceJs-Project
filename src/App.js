@@ -6,6 +6,7 @@ import { commerce } from "./Components/lib/commerce";
 import { useEffect, useState } from "react";
 import Cart from "./Components/Cart/Cart";
 import Checkout from "./Components/Checkout/Checkout";
+import ProductDetails from "./Components/ProductDetails/ProductDetails";
 
 function App() {
   let [products, setProducts] = useState([]);
@@ -50,6 +51,7 @@ function App() {
             }
           />
           <Route path="/cart" element={<Cart cart={cart} emptyCart={emptyCart} RemoveCart={RemoveCart} quantityUpdate={quantityUpdate}/>} />
+          <Route path="/productDetail/:id" element={<ProductDetails onAddToCart={handleAddToCart} products={products}/>} />
           <Route path="/checkout" element={<Checkout />}/>
         </Routes>
       </BrowserRouter>
