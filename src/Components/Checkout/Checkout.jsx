@@ -43,7 +43,6 @@ const Checkout = () => {
     </div>
   </div>
   <div className="col-xs-3 bs-wizard-step disabled">
-    {" "}
     !-- active --
     <div className="text-center bs-wizard-stepnum">Step 4</div>
     <div className="progress">
