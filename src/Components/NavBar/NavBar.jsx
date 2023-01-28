@@ -26,13 +26,13 @@ const NavBar = ({items}) => {
           <li>
             <Link
               className={`nav-item fs-5 text-white text-dark text-decoration-none`}
-              to="/Contact"
+              to="/contact"
             >
               Contact Us
             </Link>
           </li>
           <li className={`nav-item mt-1`}>
-            <Link to="/Cart">
+            <Link to="/cart">
                 <div className={`position-relative`}>
               <img
                 className={`${style.icon} ms-2`}

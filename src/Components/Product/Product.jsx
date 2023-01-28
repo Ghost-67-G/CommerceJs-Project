@@ -13,28 +13,28 @@ const Product = ({ products, onAddToCart }) => {
   let [flag2, setFlag2] = useState(false);
   let navigate = useNavigate();
   const catagorySorter = (e) => {
-    if (e.target.value === "ALL") {
+    if (e === "ALL") {
       setFlag2(false);
       return setShort(products);
     } else {
       short = products.filter((item) => {
         for (let catagory of item.categories) {
-          if (catagory.name === e.target.value) return catagory;
+          if (catagory.name === e) return catagory;
         }
       });
       setShort(short);
       setFlag2(true);
     }
-    setValue(e.target.value);
+    setValue(e);
   };
   const searchVal = (e) => {
     searchValue = e.target.value.toLowerCase();
     setSearch(searchValue);
     if (!searchValue) {
+      catagorySorter(value)
       setFlag(false);
       setFlag2(false);
     }
-    // console.log(searchValue)
   };
   const search = () => {
     if (flag2) {
@@ -46,7 +46,6 @@ const Product = ({ products, onAddToCart }) => {
         return searchValue.includes(item.name[0].toLowerCase());
       });
     }
-    console.log(short);
     setShort(short);
     setFlag(true);
   };
@@ -58,7 +57,9 @@ const Product = ({ products, onAddToCart }) => {
           <h3>Catagories :</h3>
           <select
             onChange={(e) => {
-              catagorySorter(e);
+              value = e.target.value
+              setValue(value)
+              catagorySorter(value);
             }}
             className={`fs-5 ms-2 border px-3 py-2`}
           >
@@ -75,7 +76,7 @@ const Product = ({ products, onAddToCart }) => {
               type="text"
               placeholder="Search Product"
               onChange={(e) => {
-                searchVal(e);
+                searchVal(e)
               }}
             />
             <button
@@ -88,7 +89,7 @@ const Product = ({ products, onAddToCart }) => {
         </div>
       </header>
       <div className={`row mt-4 gap-2 justify-content-center text-center`}>
-        {(value !== "ALL" || flag ? short : products).map((item) => {
+        {(value !== "ALL" || flag || flag2 ? short : products).map((item) => {
           return (
             <div
               className="col-md-4 col-sm-5 col-lg-3 border"
