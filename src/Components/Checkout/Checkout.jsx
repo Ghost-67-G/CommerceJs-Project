@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { commerce } from "../lib/commerce";
-import AdressForm from "./AdressForm";
+import AdressForm from "./CheckoutForms/AdressForm";
 import "./Checkout.css";
-import Payment from "./Payment";
+import Payment from "./CheckoutForms/Payment";
 
 const Checkout = ({cart}) => {
-  let [active, setActive] = useState(false);
+  let [active, setActive] = useState(0);
 
   const [checkoutToken,setCheckoutToken] = useState(null)
+  const [shippingData,setShippingData] = useState({})
 
   useEffect(()=>{
     const generateToken = async ()=>{
@@ -20,12 +21,24 @@ const Checkout = ({cart}) => {
     }
     generateToken()
   },[cart])
+
   const nextStep = () => {
-    setActive(true);
+    setActive((prev)=>prev+1);
   };
   const prevStep = () => {
-    setActive(false);
+    setActive((prev)=>prev-1);
   };
+  const next = (data) =>{
+    setShippingData(data)
+    nextStep()
+  }
+
+  const Confirmation = ()=>{
+    return <div>Hello</div>
+  }
+
+  const Form = ()=> active===0?<AdressForm checkoutToken={checkoutToken} next={next} /> : <Payment shippingData={shippingData} />
+
   return (
     <div>
       <div className={`toolHead`} />
@@ -42,7 +55,7 @@ const Checkout = ({cart}) => {
             Payment
           </span>
         </div>
-        {active ? <Payment /> : checkoutToken && <AdressForm checkoutToken={checkoutToken} />}
+        {active===2 ? <Confirmation/> : checkoutToken && <Form />}
 
         {/* <div className="form-footer d-flex">
           <button type="button" className="prevBtn" onClick={prevStep}>

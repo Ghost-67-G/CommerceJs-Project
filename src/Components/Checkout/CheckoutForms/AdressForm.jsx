@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import { commerce } from "../lib/commerce";
+import { commerce } from "../../lib/commerce";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-const AdressForm = ({ checkoutToken }) => {
+const AdressForm = ({ checkoutToken, next }) => {
   const form = useForm();
   const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState("");
@@ -66,9 +66,10 @@ const AdressForm = ({ checkoutToken }) => {
   return (
     <div>
       <FormProvider {...form}>
-        <form onSubmit="">
+        <form onSubmit={form.handleSubmit((data)=>next({...data,shippingCountry,shippingSubdivision,shippingOption}))}>
           <div className="form-floating w-50 pe-1 d-inline-block mb-3">
             <input
+              {...form.register("FirstName")}
               required
               type="text"
               className="form-control"
@@ -79,6 +80,7 @@ const AdressForm = ({ checkoutToken }) => {
           </div>
           <div className="form-floating w-50 d-inline-block mb-3">
             <input
+              {...form.register("LastName")}
               required
               type="text"
               className="form-control"
@@ -89,6 +91,7 @@ const AdressForm = ({ checkoutToken }) => {
           </div>
           <div className="form-floating mb-3">
             <input
+              {...form.register("Email")}
               required
               type="email"
               className="form-control"
@@ -97,18 +100,9 @@ const AdressForm = ({ checkoutToken }) => {
             />
             <label for="floatingInput">Email address</label>
           </div>
-          <div className="form-floating mb-3">
-            <input
-              required
-              type="password"
-              className="form-control"
-              //   id="floatingPassword"
-              placeholder="Password"
-            />
-            <label for="floatingPassword">Password</label>
-          </div>
           <div className="form-floating w-50 pe-1 d-inline-block mb-3">
             <input
+              {...form.register("City")}
               required
               type="text"
               className="form-control "
@@ -119,6 +113,7 @@ const AdressForm = ({ checkoutToken }) => {
           </div>
           <div className="form-floating w-50 d-inline-block mb-3">
             <input
+              {...form.register("ZipCode")}
               required
               type="text"
               className="form-control "
