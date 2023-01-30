@@ -37,7 +37,7 @@ const Checkout = ({cart}) => {
     return <div>Hello</div>
   }
 
-  const Form = ()=> active===0?<AdressForm checkoutToken={checkoutToken} next={next} /> : <Payment shippingData={shippingData} />
+  const Form = ()=> active===0?<AdressForm checkoutToken={checkoutToken} next={next} /> : <Payment shippingData={shippingData} prevStep={prevStep} checkoutToken={checkoutToken} />
 
   return (
     <div>
@@ -51,7 +51,7 @@ const Checkout = ({cart}) => {
           >
             Shipping Details
           </span>
-          <span className={active ? `stepIndicator active` : `stepIndicator`}>
+          <span className={active===2 ? `stepIndicator finish` : active? `stepIndicator active`:`stepIndicator`}>
             Payment
           </span>
         </div>

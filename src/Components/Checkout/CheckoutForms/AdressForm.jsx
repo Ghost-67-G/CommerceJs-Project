@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars*/
 import { useState, useEffect } from "react";
 import { commerce } from "../../lib/commerce";
 import { useForm, FormProvider } from "react-hook-form";
@@ -76,7 +76,7 @@ const AdressForm = ({ checkoutToken, next }) => {
               //   id="floatingInput"
               placeholder="name@example.com"
             />
-            <label for="floatingInput">First Name</label>
+            <label for="floatingInput">First Name <span className={`text-danger`}>*</span></label>
           </div>
           <div className="form-floating w-50 d-inline-block mb-3">
             <input
@@ -87,7 +87,7 @@ const AdressForm = ({ checkoutToken, next }) => {
               //   id="floatingInput"
               placeholder="name@example.com"
             />
-            <label for="floatingInput">Last Name</label>
+            <label for="floatingInput">Last Name <span className={`text-danger`}>*</span></label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -98,7 +98,18 @@ const AdressForm = ({ checkoutToken, next }) => {
               //   id="floatingInput"
               placeholder="name@example.com"
             />
-            <label for="floatingInput">Email address</label>
+            <label for="floatingInput">Email address <span className={`text-danger`}>*</span></label>
+          </div>
+          <div className="form-floating mb-3">
+            <input
+              {...form.register("Address1")}
+              required
+              type="text"
+              className="form-control"
+              //   id="floatingInput"
+              placeholder="name@example.com"
+            />
+            <label for="floatingInput">Address1 <span className={`text-danger`}>*</span></label>
           </div>
           <div className="form-floating w-50 pe-1 d-inline-block mb-3">
             <input
@@ -109,7 +120,7 @@ const AdressForm = ({ checkoutToken, next }) => {
               //   id="floatingInput"
               placeholder="name@example.com"
             />
-            <label for="floatingInput">City</label>
+            <label for="floatingInput">City <span className={`text-danger`}>*</span></label>
           </div>
           <div className="form-floating w-50 d-inline-block mb-3">
             <input
@@ -120,7 +131,7 @@ const AdressForm = ({ checkoutToken, next }) => {
               //   id="floatingInput"
               placeholder="name@example.com"
             />
-            <label for="floatingInput">Zip / Postal Code</label>
+            <label for="floatingInput">Zip / Postal Code <span className={`text-danger`}>*</span></label>
           </div>
           <div className="form-floating pe-1 mb-3 w-50 d-inline-block">
             <select
