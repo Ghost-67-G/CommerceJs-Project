@@ -5,7 +5,7 @@ import AdressForm from "./CheckoutForms/AdressForm";
 import "./Checkout.css";
 import Payment from "./CheckoutForms/Payment";
 
-const Checkout = ({cart}) => {
+const Checkout = ({cart,order,onCaptureCheckout,error}) => {
   let [active, setActive] = useState(0);
 
   const [checkoutToken,setCheckoutToken] = useState(null)
@@ -37,7 +37,7 @@ const Checkout = ({cart}) => {
     return <div>Hello</div>
   }
 
-  const Form = ()=> active===0?<AdressForm checkoutToken={checkoutToken} next={next} /> : <Payment shippingData={shippingData} prevStep={prevStep} checkoutToken={checkoutToken} />
+  const Form = ()=> active===0?<AdressForm checkoutToken={checkoutToken} next={next} /> : <Payment shippingData={shippingData} onCaptureCheckout={onCaptureCheckout} prevStep={prevStep} nextStep={nextStep} checkoutToken={checkoutToken} />
 
   return (
     <div>

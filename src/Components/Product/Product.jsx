@@ -1,5 +1,3 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";

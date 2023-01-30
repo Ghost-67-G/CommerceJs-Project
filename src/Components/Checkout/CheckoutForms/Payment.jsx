@@ -9,8 +9,13 @@ import Review from "./Review";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
-const Payment = ({ shippingData, checkoutToken, prevStep }) => {
-
+const Payment = ({
+  shippingData,
+  checkoutToken,
+  prevStep,
+  nextStep,
+  onCaptureCheckout,
+}) => {
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
     if (!stripe || !elements) {
@@ -39,20 +44,20 @@ const Payment = ({ shippingData, checkoutToken, prevStep }) => {
           town_city: shippingData.City,
           country_state: shippingData.shippingSubdivision,
           postal_zip_code: shippingData.ZipCode,
-          country:shippingData.shippingCountry
+          country: shippingData.shippingCountry,
         },
-        fulfullment:{shipping_method:shippingData.shippingOption},
-        payment:{
-          gateway:"strip",
-          stripe:{
-            payment_method_id:paymentMethod.id
-          }
-        }
+        fulfullment: { shipping_method: shippingData.shippingOption },
+        payment: {
+          gateway: "strip",
+          stripe: {
+            payment_method_id: paymentMethod.id,
+          },
+        },
       };
-
+      onCaptureCheckout(checkoutToken.id, orderData);
+      nextStep();
     }
   };
-  
 
   return (
     <div>
