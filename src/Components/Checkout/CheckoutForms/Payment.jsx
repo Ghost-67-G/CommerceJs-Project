@@ -23,13 +23,13 @@ const Payment = ({
     }
     const cardElement = elements.getElement(CardElement);
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    let { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: cardElement,
     });
 
     if (error) {
-      console.log(error);
+      console.log('[error]', error);
     } else {
       const orderData = {
         line_items: checkoutToken.line_items,
@@ -42,13 +42,13 @@ const Payment = ({
           name: "Primary",
           street: shippingData.Address1,
           town_city: shippingData.City,
-          country_state: shippingData.shippingSubdivision,
+          county_state: shippingData.shippingSubdivision,
           postal_zip_code: shippingData.ZipCode,
           country: shippingData.shippingCountry,
         },
-        fulfullment: { shipping_method: shippingData.shippingOption },
+        fulfillment: { shipping_method: shippingData.shippingOption },
         payment: {
-          gateway: "strip",
+          gateway: 'stripe',
           stripe: {
             payment_method_id: paymentMethod.id,
           },

@@ -177,7 +177,7 @@ const AdressForm = ({ checkoutToken, next }) => {
                 );
               })}
             </select>
-            <label for="floatingInput">Shipping Subdivisions</label>
+            <label for="floatingInput">Shipping Options</label>
           </div>
           <div className={`d-flex justify-content-between`}>
             <Link to='/cart' className={`btn btn-outline-dark`}>Back To Cart</Link>

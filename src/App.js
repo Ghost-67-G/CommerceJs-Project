@@ -41,7 +41,7 @@ function App() {
     setCart(newCart)
   }
 
-  const handleCaptureCheckout = async(checkoutTokenId,newOrder)=>{
+  const handleCaptureCheckout = async(checkoutTokenId, newOrder)=>{
     try{
       const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder)
       setOrder(incomingOrder)
@@ -55,8 +55,6 @@ function App() {
     fetchProducts();
     fetchCart();
   }, []);
-  // console.log(products);
-  // console.log(cart);
   return (
     <div>
       <BrowserRouter>

@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Review = ({checkoutToken}) => {
-  console.log(checkoutToken)
   return (
     <div>
       <h3 className={`py-3`}>Order Summary</h3>

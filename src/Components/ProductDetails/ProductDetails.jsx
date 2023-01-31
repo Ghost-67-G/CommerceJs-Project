@@ -6,7 +6,6 @@ const ProductDetails = ({ products, onAddToCart }) => {
   let param = useParams();
   let [quantity,setQTY] = useState(1)
   let product = products.filter((item) => item.id === param.id);
-  console.log(product);
   return (
     <div>
       <div className="toolHead" />

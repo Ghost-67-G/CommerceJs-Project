@@ -1,14 +1,17 @@
-import React from "react";
+import React,{useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = ({ cart, emptyCart, RemoveCart, quantityUpdate }) => {
+  let [hello,setHello] = useState(false)
   let navigate = useNavigate();
+  setTimeout(()=>{setHello(true)},3000)
   return (
     <div>
       <div className="toolHead" />
       <header className={`bg-light border px-5 py-4`}>
         <h1 className={`px-5`}>Shopping Cart</h1>
       </header>
+      {hello?<>
       {cart.line_items.length ? (
         <div>
           <div className={`text-center`}>
@@ -120,7 +123,9 @@ const Cart = ({ cart, emptyCart, RemoveCart, quantityUpdate }) => {
         <div>
           <h1 className={`text-center fs-1`}>Your Shopping Cart is Empty</h1>
         </div>
-      )}
+      )}</>:<div className={`text-center mt-5 w-100 overflow-hidden `}><div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div></div>}
     </div>
   );
 };
